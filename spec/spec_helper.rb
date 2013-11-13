@@ -2,6 +2,8 @@ ENV['RACK_ENV'] = 'test'
 
 Bundler.require(:default, :test)
 
+require 'helpers'
+
 SimpleCov.start do
   add_group 'Sinatra', 'lib/clochette/application.rb'
 
@@ -14,6 +16,7 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.include Rack::Test::Methods
+  config.include Helpers
 end
 
 def app
