@@ -9,7 +9,7 @@ gem 'sinatra'
 
 gem 'ruby-trello', require: 'trello'
 
-group :production do
+group :production, :development do
   gem 'unicorn'
 end
 
@@ -22,4 +22,8 @@ end
 
 group :development, :test do
   gem 'pry'
+end
+
+group :development do
+  gem 'foreman'
 end
