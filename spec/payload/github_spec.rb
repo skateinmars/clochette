@@ -13,9 +13,10 @@ describe Clochette::Payload::Github do
       it 'should format a list of commits as a struct' do
         expect(subject.commits.length).to eql(3)
 
-        expect(subject.commits[0].url).to eql('example.org')
+        expect(subject.commits[0].url).to(
+          eql(github_payload['commits'][0]['url']))
         expect(subject.commits[0].message).to eql('Fix #20')
-        expect(subject.commits[0].email).to eql('toto@example.org')
+        expect(subject.commits[0].author).to eql("John Doe")
       end
     end
 
@@ -23,7 +24,8 @@ describe Clochette::Payload::Github do
       it 'should extract the actions from the commits' do
         expect(subject.actions.length).to eql(2)
 
-        expect(subject.actions[1]).to eql({action_type: :finish, ticket_id: 21})
+        expect(subject.actions[1].type).to eql(:finish)
+        expect(subject.actions[1].ticket_id).to eql(21)
       end
     end
   end

@@ -9,26 +9,19 @@ module Clochette
 
       def perform
         actions.each do |action|
-          card_id = action[:ticket_id]
-          action_type = action[:action_type]
-
-          if action_type == :finish
-            mark_card_as_finished(card_id)
+          if action.type == :finish
+            mark_card_as_finished(action.ticket_id, action.comment)
           end
         end
       end
 
       private
 
-      def mark_card_as_finished(card_id)
+      def mark_card_as_finished(card_id, comment)
         card = board.find_card(card_id)
 
         card.move_to_list(finished_list)
-        card.add_comment(build_comment(:finish))
-      end
-
-      def build_comment(action_type)
-        "Card has been moved"
+        card.add_comment(comment)
       end
 
       def board

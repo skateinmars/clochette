@@ -3,8 +3,8 @@ require 'clochette/hook/trello'
 
 describe Clochette::Hook::Trello do
   context 'given a Trello post hook Hook' do
-    let(:actions) do [{action_type: :finish, ticket_id: 20},
-                      {action_type: :finish, ticket_id: 21}]
+    let(:actions) do [Clochette::Action.new(:finish, ticket_id: 20),
+                      Clochette::Action.new(:finish, ticket_id: 21)]
     end
     subject { Clochette::Hook::Trello.new(actions) }
 
