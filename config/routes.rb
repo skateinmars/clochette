@@ -1,5 +1,5 @@
 Clochette::Application.routes.draw do
   root 'home#index'
 
-  post 'github' => 'github#hook'
+  post 'hooks/:service_name' => 'payloads#create'
 end

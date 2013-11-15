@@ -2,8 +2,8 @@ module Payload
   class Github
     attr_reader :payload, :commits
 
-    def initialize(payload)
-      @payload = payload
+    def initialize(params)
+      @payload = JSON.parse(params['payload'])
 
       extract_commits
     end

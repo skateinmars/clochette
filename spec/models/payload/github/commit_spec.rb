@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Payload::Github::Commit do
   context 'given a Github post hook payload' do
-    let(:commit_data) { github_payload['commits'][0] }
+    let(:commit_data) { JSON.parse(github_payload)['commits'][0] }
     subject { Payload::Github::Commit.new(commit_data) }
 
     it 'should set the id attribute' do

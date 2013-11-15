@@ -2,10 +2,12 @@ require 'spec_helper'
 
 describe Payload::Github do
   context 'given a Github post hook payload' do
-    subject { Payload::Github.new(github_payload) }
+    subject { Payload::Github.new(github_webhook_params) }
+
+    let(:github_parsed_payload) { JSON.parse(github_payload) }
 
     it 'should set the payload attribute' do
-      expect(subject.payload).to eql(github_payload)
+      expect(subject.payload).to eql(github_parsed_payload)
     end
 
     describe '#commits' do
@@ -13,7 +15,7 @@ describe Payload::Github do
         expect(subject.commits.length).to eql(3)
 
         expect(subject.commits[0].url).to(
-          eql(github_payload['commits'][0]['url']))
+          eql(github_parsed_payload['commits'][0]['url']))
         expect(subject.commits[0].message).to eql('Fix #20')
         expect(subject.commits[0].author).to eql("John Doe")
       end
