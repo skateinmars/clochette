@@ -1,14 +1,13 @@
 require 'spec_helper'
-require 'clochette/action'
 
-describe Clochette::Action do
+describe Action do
   describe '.new' do
     let(:type) { :finish }
     let(:ticket_id) { 42 }
     let(:comment) { "Helpful comment" }
 
     subject do
-      Clochette::Action.new(type, ticket_id: ticket_id, comment: comment)
+      Action.new(type, ticket_id: ticket_id, comment: comment)
     end
 
     it 'should set the type attribute' do

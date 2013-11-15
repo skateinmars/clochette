@@ -1,9 +1,8 @@
 require 'spec_helper'
-require 'clochette/payload/github'
 
-describe Clochette::Payload::Github do
+describe Payload::Github do
   context 'given a Github post hook payload' do
-    subject { Clochette::Payload::Github.new(github_payload) }
+    subject { Payload::Github.new(github_payload) }
 
     it 'should set the payload attribute' do
       expect(subject.payload).to eql(github_payload)

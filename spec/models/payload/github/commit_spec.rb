@@ -1,10 +1,9 @@
 require 'spec_helper'
-require 'clochette/payload/github/commit'
 
-describe Clochette::Payload::Github::Commit do
+describe Payload::Github::Commit do
   context 'given a Github post hook payload' do
     let(:commit_data) { github_payload['commits'][0] }
-    subject { Clochette::Payload::Github::Commit.new(commit_data) }
+    subject { Payload::Github::Commit.new(commit_data) }
 
     it 'should set the id attribute' do
       expect(subject.id).to eql(commit_data['id'])
