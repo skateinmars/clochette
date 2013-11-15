@@ -4,7 +4,7 @@ Receive and dispatch web hooks.
 
 ## Installation
 
-The project is built on top of Rails 4.
+The project is built on top of Rails 4 and uses a PostgreSQL database.
 
 ### Prerequisites
 

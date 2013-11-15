@@ -21,7 +21,16 @@ RSpec.configure do |config|
   # # instead of true.
   # #
   # # Delegate transation policy to DatabaseCleaner.
-  # config.use_transactional_fixtures = false
+  config.use_transactional_fixtures = false
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 
   config.include Helpers
 end

@@ -4,6 +4,8 @@ ruby "2.0.0"
 
 gem 'rails', '4.0.1'
 
+gem 'pg'
+
 gem 'ruby-trello', require: 'trello'
 
 group :production, :development do
@@ -15,6 +17,8 @@ group :production do
 end
 
 group :test do
+  gem 'database_cleaner'
+
   gem 'simplecov'
   gem 'cane', require: false
 end
