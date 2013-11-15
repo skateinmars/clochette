@@ -1,11 +1,9 @@
 require 'spec_helper'
-require 'clochette/application'
 require 'clochette/payload/github'
 require 'clochette/hook'
-require 'json'
 
-describe Clochette::Application do
-  describe 'POST /github/:hook' do
+describe "Github WebHooks" do
+  describe 'POST /github' do
     let(:payload) { {'payload' => 'test'} }
     let(:actions) { [{finish: 1}] }
 
@@ -23,7 +21,7 @@ describe Clochette::Application do
     end
 
     it 'should return a ok http response' do
-      expect(last_response).to be_ok
+      expect(response).to be_ok
     end
   end
 end

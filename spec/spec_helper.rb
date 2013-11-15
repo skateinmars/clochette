@@ -1,24 +1,27 @@
-ENV['RACK_ENV'] = 'test'
+ENV["RAILS_ENV"] ||= 'test'
 
-Bundler.require(:default, :test)
+require 'simplecov'
 
-require 'helpers'
+SimpleCov.start 'rails'
 
-SimpleCov.start do
-  add_group 'Sinatra', 'lib/clochette/application.rb'
+require File.expand_path("../../config/environment", __FILE__)
+require 'rspec/rails'
+require 'rspec/autorun'
 
-  add_filter 'spec'
-  add_filter 'config'
-end
+# Requires supporting ruby files with custom matchers and macros, etc,
+# in spec/support/ and its subdirectories.
+Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
   config.mock_with :rspec
   config.order = "random"
 
-  config.include Rack::Test::Methods
-  config.include Helpers
-end
+  # # If you're not using ActiveRecord, or you'd prefer not to run each of your
+  # # examples within a transaction, remove the following line or assign false
+  # # instead of true.
+  # #
+  # # Delegate transation policy to DatabaseCleaner.
+  # config.use_transactional_fixtures = false
 
-def app
-  Clochette::Application
+  config.include Helpers
 end

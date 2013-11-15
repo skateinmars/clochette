@@ -4,7 +4,7 @@ Receive and dispatch web hooks.
 
 ## Installation
 
-The project is built on top of Sinatra.
+The project is built on top of Rails 4.
 
 ### Prerequisites
 

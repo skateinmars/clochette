@@ -18,3 +18,7 @@ _yardoc
 doc/
 
 .env
+
+/public/system
+/log/*.log
+config/database.yml

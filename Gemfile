@@ -2,10 +2,7 @@ source 'https://rubygems.org'
 
 ruby "2.0.0"
 
-gem 'activesupport'
-gem 'rake'
-
-gem 'sinatra'
+gem 'rails', '4.0.1'
 
 gem 'ruby-trello', require: 'trello'
 
@@ -13,15 +10,19 @@ group :production, :development do
   gem 'unicorn'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :test do
-  gem 'rspec'
-  gem 'rack-test'
   gem 'simplecov'
   gem 'cane', require: false
 end
 
 group :development, :test do
-  gem 'pry'
+  gem 'rspec-rails'
+  gem 'pry-rails'
+  gem 'dotenv'
 end
 
 group :development do
