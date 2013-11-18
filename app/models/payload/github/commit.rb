@@ -2,7 +2,7 @@ module Payload
   class Github
     class Commit
       TICKET_PATTERN = /((close|fix)e?s? \D?([0-9]+))/i
-      ACTION_TYPE = :finish
+      EVENT_TYPE = 'ticket_finished'
 
       attr_reader :id, :url, :author, :message
 
@@ -17,20 +17,20 @@ module Payload
         "#{author}: #{message} (#{url})"
       end
 
-      def actions
-        return @actions if @actions
+      def events
+        return @events if @events
 
-        @actions = []
+        @events = []
         filtered_message = message.dup
 
         while match = filtered_message.match(TICKET_PATTERN) do
           filtered_message.slice!(match[0])
-          @actions << Action.new(ACTION_TYPE,
-                                            ticket_id: match[3].to_i,
-                                            comment: comment)
+          @events << Event.new(EVENT_TYPE,
+                                ticket_id: match[3].to_i,
+                                comment: comment)
         end
 
-        @actions
+        @events
       end
     end
   end

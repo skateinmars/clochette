@@ -4,7 +4,7 @@ class PayloadsController < ApplicationController
   def create
     payload = Payload.from_service(params[:service_name]).new(params)
 
-    Hook.trigger(payload.actions)
+    EventDispatcher.dispatch(payload.events)
 
     head :ok
   end

@@ -8,9 +8,9 @@ module Payload
       extract_commits
     end
 
-    def actions
-      @actions ||= commits.reduce([]) do |actions, commit|
-        actions + commit.actions
+    def events
+      @events ||= commits.reduce([]) do |events, commit|
+        events + commit.events
       end
     end
 

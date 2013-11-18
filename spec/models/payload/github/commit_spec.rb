@@ -29,12 +29,12 @@ describe Payload::Github::Commit do
       end
     end
 
-    describe '#actions' do
-      it 'should extract the actions from the commit' do
-        expect(subject.actions.length).to eql(1)
+    describe '#events' do
+      it 'should extract the events from the commit' do
+        expect(subject.events.length).to eql(1)
 
-        expect(subject.actions[0].type).to eql(:finish)
-        expect(subject.actions[0].ticket_id).to eql(20)
+        expect(subject.events[0].type).to eql('ticket_finished')
+        expect(subject.events[0].parameters[:ticket_id]).to eql(20)
       end
     end
   end

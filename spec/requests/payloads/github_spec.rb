@@ -3,11 +3,11 @@ require 'spec_helper'
 describe "Github WebHooks" do
   describe 'POST /hooks/github' do
     let(:payload) { JSON.dump({'payload' => 'test'}) }
-    let(:actions) { [{finish: 1}] }
+    let(:events) { [{finish: 1}] }
 
     before do
       github_payload_mock = double('payload')
-      expect(github_payload_mock).to receive(:actions).and_return(actions)
+      expect(github_payload_mock).to receive(:events).and_return(events)
 
       github_payload_class_mock = double('github_payload')
       expect(github_payload_class_mock).
@@ -18,7 +18,7 @@ describe "Github WebHooks" do
         with('github').
         and_return(github_payload_class_mock)
 
-      expect(Hook).to receive(:trigger).with(actions)
+      expect(EventDispatcher).to receive(:dispatch).with(events)
 
       post '/hooks/github', payload: payload
     end
