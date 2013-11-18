@@ -1,6 +1,6 @@
 class EventDispatcher
   ACTIONS = {
-    'ticket_finished' => [Action::Trello::MarkCardAsFinished]
+    'ticket_finished' => ['mark_card_as_finished_on_trello']
   }
 
   attr_reader :event
@@ -16,8 +16,8 @@ class EventDispatcher
   end
 
   def dispatch
-    actions.each do |action|
-      action.new(event).perform
+    actions.each do |action_name|
+      Action.fetch(action_name).new(event).perform
     end
   end
 

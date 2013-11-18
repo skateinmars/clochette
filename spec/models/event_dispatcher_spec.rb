@@ -40,14 +40,12 @@ describe EventDispatcher do
       let(:event) { Event.new('ticket_finished', ticket_id: 42) }
 
       it "performs the matching action" do
-        EventDispatcher::ACTIONS['ticket_finished'].each do |action_class|
-          action_double = double('action')
-          expect(action_double).to receive(:perform)
+        action_double = double('action')
+        expect(action_double).to receive(:perform)
 
-          expect(action_class).to receive(:new).
-                                    with(event).
-                                    and_return(action_double)
-        end
+        expect(Action::Trello::MarkCardAsFinished).to receive(:new).
+                                  with(event).
+                                  and_return(action_double)
 
         subject.dispatch
       end
