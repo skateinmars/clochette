@@ -25,6 +25,9 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+
   gem 'pry-rails'
   gem 'dotenv'
 end
