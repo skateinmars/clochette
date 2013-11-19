@@ -49,14 +49,14 @@ describe EventDispatcher do
       let!(:action) do
         Trigger.create!(project: project,
                         event_type: 'ticket_finished',
-                        action_name: 'mark_card_as_finished_on_trello')
+                        action_name: 'no_op')
       end
 
       it "performs the matching action" do
         action_double = double('action')
         expect(action_double).to receive(:perform)
 
-        expect(Action::Trello::MarkCardAsFinished).to receive(:new).
+        expect(Action::NoOp).to receive(:new).
                                   with(event).
                                   and_return(action_double)
 
