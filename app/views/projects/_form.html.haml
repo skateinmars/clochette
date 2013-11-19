@@ -1,0 +1,8 @@
+= form_for @project do |form|
+  .form-group
+    = form.label :name
+    = form.text_field :name, class: 'form-control'
+
+  .actions
+    = form.submit t('helpers.links.save'), class: 'btn btn-primary'
+    = link_to t('helpers.links.back'), projects_path, class: 'btn btn-default'

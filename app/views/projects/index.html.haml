@@ -1,0 +1,22 @@
+%ol.breadcrumb
+  %li.active
+    = link_to t('layouts.application.projects')
+
+%table.table
+  %thead
+    %tr
+      %th
+        = Project.human_attribute_name(:name)
+      %th
+  %tbody
+    - @projects.each do |project|
+      %tr
+        %td
+          = project.name
+        %td
+          = link_to t('.triggers'), project_triggers_path(project), class: 'btn btn-primary'
+          = form_for(project, method: :delete, html: {class: 'form-inline', style: 'display: inline;'}) do |form|
+            = form.submit t('helpers.links.destroy'), data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
+
+%p
+  = link_to t('.new'), new_project_path, id: 'new_project'

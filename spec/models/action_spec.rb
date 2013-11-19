@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe Action do
+  describe '.available_actions' do
+    it 'should return a Hash' do
+      expect(Action.available_actions).to be_a(Hash)
+    end
+  end
+
   describe '.register_action' do
     it "should add an action to the available_actions" do
       action_name = 'do_something'

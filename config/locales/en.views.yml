@@ -1,0 +1,24 @@
+en:
+  layouts:
+    application:
+      title: Clochette
+      projects: Projects
+  helpers:
+    links:
+      back: "Back"
+      cancel: "Cancel"
+      confirm: "Are you sure?"
+      destroy: "Delete"
+      new: "New"
+      edit: "Edit"
+      save: "Save"
+  projects:
+    index:
+      new: New project
+      triggers: Triggers
+    new:
+      title: New Project
+  triggers:
+    index:
+      triggers: Triggers
+      new: New trigger

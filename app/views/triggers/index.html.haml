@@ -1,0 +1,31 @@
+%ol.breadcrumb
+  %li
+    = link_to t('layouts.application.projects'), projects_path
+  %li
+    = @project.name
+  %li.active
+    = t('.triggers')
+
+%table.table
+  %thead
+    %tr
+      %th
+        = Trigger.human_attribute_name(:event_type)
+      %th
+        = Trigger.human_attribute_name(:action_name)
+      %th
+  %tbody
+    - @triggers.each do |trigger|
+      %tr
+        %td
+          = trigger.event_type
+        %td
+          = trigger.action_name
+        %td
+          = form_for([@project, trigger], method: :delete, html: {class: 'form-inline', style: 'display: inline;'}) do |form|
+            = form.submit t('helpers.links.destroy'), data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
+
+%h3
+  = t('.new')
+
+= render partial: 'form', locals: { project: @project, trigger: @trigger }

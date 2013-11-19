@@ -1,11 +1,11 @@
 module Action
-  mattr_accessor :available_actions
-
-  self.available_actions = {}
-
   class << self
+    def available_actions
+      @@available_actions ||= {}
+    end
+
     def register_action(action_name, action_class)
-      self.available_actions.merge!({action_name => action_class})
+      available_actions.merge!({action_name => action_class})
     end
 
     def fetch(action_name)

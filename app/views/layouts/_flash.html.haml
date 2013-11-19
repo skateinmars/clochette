@@ -1,0 +1,6 @@
+- if flash.any?
+  #flash
+    - {alert: 'alert alert-danger', notice: 'alert alert-info'}.each do |flash_key, css_classes|
+      - if flash[flash_key]
+        %div{class: css_classes}
+          = flash[flash_key]

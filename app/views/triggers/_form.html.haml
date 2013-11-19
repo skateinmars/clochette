@@ -1,0 +1,12 @@
+= form_for [project, trigger] do |form|
+  .form-group
+    = form.label :event_type
+    = form.select :event_type, Event::EVENT_TYPES, { include_blank: true }, class: 'form-control'
+
+  .form-group
+    = form.label :action_name
+    = form.select :action_name, Action.available_actions.keys.sort, { include_blank: true }, class: 'form-control'
+
+  .actions
+    = form.submit t('helpers.links.save'), class: 'btn btn-primary'
+    = link_to t('helpers.links.back'), projects_path, class: 'btn btn-default'
