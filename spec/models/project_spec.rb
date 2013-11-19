@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Project do
+  it { should have_many(:triggers) }
+
   it { should validate_presence_of(:name) }
 
   it "should generate a uid on creation" do

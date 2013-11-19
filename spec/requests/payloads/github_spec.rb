@@ -21,7 +21,7 @@ describe "Github WebHooks" do
           with('github').
           and_return(github_payload_class_mock)
 
-        expect(EventDispatcher).to receive(:dispatch).with(events)
+        expect(EventDispatcher).to receive(:dispatch).with(project, events)
 
         post "/hooks/#{project.uid}/github", payload: payload
       end

@@ -6,7 +6,7 @@ class PayloadsController < ApplicationController
   def create
     payload = Payload.from_service(params[:service_name]).new(params)
 
-    EventDispatcher.dispatch(payload.events)
+    EventDispatcher.dispatch(@project, payload.events)
 
     head :ok
   end

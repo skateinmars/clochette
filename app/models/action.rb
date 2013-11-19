@@ -10,7 +10,7 @@ module Action
 
     def fetch(action_name)
       available_actions.fetch(action_name) do
-        raise ArgumentError.new("Unregistered action")
+        raise ArgumentError.new("Unregistered action #{action_name}")
       end
     end
   end

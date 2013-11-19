@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
+  has_many :triggers
+
   validates_presence_of :name
 
   before_create :generate_uid

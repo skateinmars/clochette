@@ -1,29 +1,26 @@
 class EventDispatcher
-  ACTIONS = {
-    'ticket_finished' => ['mark_card_as_finished_on_trello']
-  }
+  attr_reader :project, :event
 
-  attr_reader :event
-
-  def initialize(event)
+  def initialize(project, event)
+    @project = project
     @event = event
   end
 
-  def self.dispatch(events)
+  def self.dispatch(project, events)
     events.each do |event|
-      self.new(event).dispatch
+      self.new(project, event).dispatch
     end
   end
 
   def dispatch
-    actions.each do |action_name|
-      Action.fetch(action_name).new(event).perform
+    triggers_for_event_type(event.type).each do |trigger|
+      Action.fetch(trigger.action_name).new(event).perform
     end
   end
 
   private
 
-  def actions
-    ACTIONS.fetch(event.type, [])
+  def triggers_for_event_type(event_type)
+    project.triggers.with_event_type(event_type)
   end
 end

@@ -2,15 +2,21 @@ require 'spec_helper'
 
 describe EventDispatcher do
   describe '.new' do
-    let(:event) { 'event' }
-    subject { EventDispatcher.new(event) }
+    let(:event) { double('event') }
+    let(:project) { double('project') }
+    subject { EventDispatcher.new(project, event) }
 
     it "should set the event" do
       expect(subject.event).to eql(event)
     end
+
+    it "should set the project" do
+      expect(subject.project).to eql(project)
+    end
   end
 
   describe '.dispatch' do
+    let(:project) { double('project') }
     let(:events) do
       [
         Event.new('ticket_finished', ticket_id: 42),
@@ -23,21 +29,28 @@ describe EventDispatcher do
       expect(dispatcher_double).to receive(:dispatch).twice
 
       expect(EventDispatcher).to receive(:new).
-                                  with(events[0]).
+                                  with(project, events[0]).
                                   and_return(dispatcher_double)
       expect(EventDispatcher).to receive(:new).
-                                  with(events[1]).
+                                  with(project, events[1]).
                                   and_return(dispatcher_double)
 
-      EventDispatcher.dispatch(events)
+      EventDispatcher.dispatch(project, events)
     end
   end
 
   describe '#dispatch' do
-    subject { EventDispatcher.new(event) }
+    let(:project) { FactoryGirl.create(:project) }
+    let(:event) { Event.new('ticket_finished', ticket_id: 42) }
 
-    context "when the event has an action matching the defined triggers" do
-      let(:event) { Event.new('ticket_finished', ticket_id: 42) }
+    subject { EventDispatcher.new(project, event) }
+
+    context "when the project has a Trigger matching the event" do
+      let!(:action) do
+        Trigger.create!(project: project,
+                        event_type: 'ticket_finished',
+                        action_name: 'mark_card_as_finished_on_trello')
+      end
 
       it "performs the matching action" do
         action_double = double('action')
@@ -52,8 +65,6 @@ describe EventDispatcher do
     end
 
     context "when the event has an action matching no defined triggers" do
-      let(:event) { Event.new('foobar', ticket_id: 42) }
-
       it "does nothing" do
         subject.dispatch
       end
