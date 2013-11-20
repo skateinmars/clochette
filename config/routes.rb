@@ -5,5 +5,5 @@ Clochette::Application.routes.draw do
     resources :triggers, only: [:index, :create, :destroy]
   end
 
-  post 'hooks/:project_id/:service_name' => 'payloads#create'
+  post 'hooks/:project_id/:service_name' => 'payloads#create', as: :hook
 end

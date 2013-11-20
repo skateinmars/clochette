@@ -16,6 +16,7 @@ en:
     index:
       new: New project
       triggers: Triggers
+      hook_url: Webhook URL
     new:
       title: New Project
   triggers:

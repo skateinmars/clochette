@@ -8,11 +8,15 @@
       %th
         = Project.human_attribute_name(:name)
       %th
+        = t('.hook_url')
+      %th
   %tbody
     - @projects.each do |project|
       %tr
         %td
           = project.name
+        %td
+          = hook_url project_id: project.uid, service_name: ':service_name'
         %td
           = link_to t('.triggers'), project_triggers_path(project), class: 'btn btn-primary'
           = form_for(project, method: :delete, html: {class: 'form-inline', style: 'display: inline;'}) do |form|
