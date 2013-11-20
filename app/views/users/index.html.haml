@@ -1,0 +1,22 @@
+%ol.breadcrumb
+  %li.active
+    = link_to t('layouts.application.users')
+
+%table.table
+  %thead
+    %tr
+      %th
+        = User.human_attribute_name(:email)
+      %th
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td
+          = user.email
+        %td
+          = link_to t('helpers.link.edit'), edit_user_path(user), class: 'btn btn-primary'
+          = form_for(user, method: :delete, html: {class: 'form-inline', style: 'display: inline;'}) do |form|
+            = form.submit t('helpers.links.destroy'), data: { confirm: t('helpers.links.confirm') }, class: 'btn btn-danger'
+
+%p
+  = link_to t('.new'), new_user_path, id: 'new_user'

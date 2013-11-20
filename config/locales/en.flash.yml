@@ -10,4 +10,13 @@ en:
       invalid: "Trigger could not be saved"
       success: "Trigger was successfully created"
     destroy:
-      success: "Project was successfully destroyed"
+      success: "Trigger was successfully destroyed"
+  users:
+    create:
+      invalid: "User could not be saved"
+      success: "User was successfully created"
+    update:
+      invalid: "User could not be saved"
+      success: "User was successfully updated"
+    destroy:
+      success: "User was successfully destroyed"

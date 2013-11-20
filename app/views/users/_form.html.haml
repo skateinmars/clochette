@@ -1,0 +1,13 @@
+= form_for @user do |form|
+  .form-group
+    = form.label :email
+    = form.email_field :email, class: 'form-control'
+  .form-group
+    = form.label :password
+    = form.password_field :password, class: 'form-control'
+    %p.help-block
+      = t('.password_hint') if @user.persisted?
+
+  .actions
+    = form.submit t('helpers.links.save'), class: 'btn btn-primary'
+    = link_to t('helpers.links.back'), users_path, class: 'btn btn-default'

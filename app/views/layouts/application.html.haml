@@ -18,6 +18,10 @@
             = link_to projects_path do
               %i.glyphicon.glyphicon-list
               = t('.projects')
+          %li
+            = link_to users_path do
+              %i.glyphicon.glyphicon-user
+              = t('.users')
     .container
       = render 'layouts/flash'
       .row

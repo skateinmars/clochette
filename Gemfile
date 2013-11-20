@@ -13,6 +13,8 @@ gem 'sass-rails', '~> 4.0'
 gem 'bootstrap-sass', '~> 3.0'
 gem 'jquery-rails'
 
+gem 'sorcery'
+
 group :production, :development do
   gem 'unicorn'
 end
