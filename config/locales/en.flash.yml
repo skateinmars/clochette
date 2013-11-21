@@ -1,4 +1,6 @@
 en:
+  application:
+    not_authenticated: "Please login first"
   projects:
     create:
       invalid: "Project could not be saved"
@@ -20,3 +22,9 @@ en:
       success: "User was successfully updated"
     destroy:
       success: "User was successfully destroyed"
+  user_sessions:
+    create:
+      success: "Login successful"
+      invalid: "Login failed"
+    destroy:
+      success: "Logged out"

@@ -1,5 +1,6 @@
 class PayloadsController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:create]
+  skip_before_filter :require_login
 
   before_filter :load_project
 

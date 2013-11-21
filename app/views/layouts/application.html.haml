@@ -9,19 +9,26 @@
     = csrf_meta_tags
     = stylesheet_link_tag "application", media: "all"
   %body
-    %header.navbar.navbar-default{role: 'navigation'}
-      .navbar-header
-        = link_to t('.title'), root_path, class: 'navbar-brand'
-      %nav
-        %ul.nav.navbar-nav
-          %li
-            = link_to projects_path do
-              %i.glyphicon.glyphicon-list
-              = t('.projects')
-          %li
-            = link_to users_path do
-              %i.glyphicon.glyphicon-user
-              = t('.users')
+    - if current_user
+      %header.navbar.navbar-default{role: 'navigation'}
+        .navbar-header
+          = link_to t('.title'), root_path, class: 'navbar-brand'
+        %nav
+          %ul.nav.navbar-nav
+            %li
+              = link_to projects_path do
+                %i.glyphicon.glyphicon-list
+                = t('.projects')
+            %li
+              = link_to users_path do
+                %i.glyphicon.glyphicon-user
+                = t('.users')
+          %ul.nav.navbar-nav.navbar-right
+            %li.navbar-text
+              = current_user.email
+            %li
+              = form_tag(logout_path, method: :delete, class: 'navbar-form') do
+                = submit_tag t('.logout'), class: 'btn btn-danger', id: 'logout'
     .container
       = render 'layouts/flash'
       .row

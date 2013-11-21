@@ -4,6 +4,7 @@ en:
       title: Clochette
       projects: Projects
       users: Users
+      logout: Log out
   helpers:
     links:
       back: "Back"
@@ -33,3 +34,8 @@ en:
       title: User edition
     form:
       password_hint: Leave blank to keep the current password
+  user_sessions:
+    new:
+      title: Login
+    form:
+      login: Login

@@ -10,7 +10,7 @@
       %th
   %tbody
     - @users.each do |user|
-      %tr
+      %tr{id: dom_id(user)}
         %td
           = user.email
         %td
